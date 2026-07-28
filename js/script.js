@@ -50,20 +50,6 @@ const counterIo = new IntersectionObserver((entries) => {
 }, { threshold: 0.4 });
 counters.forEach(c => counterIo.observe(c));
 
-// Parallax on background glows
-let ticking = false;
-window.addEventListener('scroll', () => {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      const y = window.scrollY;
-      document.getElementById('glow1').style.transform = `translateY(${y * 0.15}px)`;
-      document.getElementById('glow2').style.transform = `translateY(${y * -0.1}px)`;
-      ticking = false;
-    });
-    ticking = true;
-  }
-}, { passive:true });
-
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
