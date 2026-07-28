@@ -131,17 +131,29 @@ nav .wrap{
   align-items:center;
   gap:10px;
 }
-.logo-mark{
-  width:34px; height:34px;
-  border-radius:9px;
-  background: linear-gradient(135deg, var(--celeste), var(--azul));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:0.95rem;
-  color:#04121f;
-  font-weight:700;
-  box-shadow: 0 0 24px rgba(56,189,248,0.5);
+.logo-img{
+  width:56px;
+  height:56px;
+  object-fit:cover;
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(56,189,248,0.35);
+  flex-shrink:0;
+  position:relative;
+  transition: transform .35s ease, filter .35s ease, box-shadow .35s ease;
+  animation: logoIntro .8s cubic-bezier(.16,.8,.3,1), logoFloat 5s ease-in-out infinite 0.8s;
+}
+.logo-img:hover{
+  transform: scale(1.1) rotate(10deg);
+  filter: brightness(1.15);
+  box-shadow: 0 8px 26px rgba(56,189,248,0.5);
+}
+@keyframes logoIntro{
+  0%{ opacity:0; transform: scale(0.6); }
+  100%{ opacity:1; transform: scale(1); }
+}
+@keyframes logoFloat{
+  0%, 100%{ top:0px; }
+  50%{ top:-4px; }
 }
 .nav-links{
   display:flex;
@@ -602,7 +614,7 @@ footer .wrap{
 @media (max-width: 600px){
   .wrap{ padding:0 20px; }
   .logo{ font-size:1.02rem; gap:8px; }
-  .logo-mark{ width:30px; height:30px; font-size:0.85rem; }
+  .logo-img{ width:40px; height:40px; }
   section{ padding:90px 0; }
   .services-grid{ grid-template-columns:1fr; }
   .form-row{ grid-template-columns:1fr; }
