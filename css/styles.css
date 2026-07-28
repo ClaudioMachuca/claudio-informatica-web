@@ -188,7 +188,33 @@ nav .wrap{
 .btn-ghost:hover{ border-color: var(--celeste); color: var(--celeste-dim); }
 
 .nav-cta{ display:flex; }
-.burger{ display:none; }
+.burger{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:5px;
+  width:42px;
+  height:42px;
+  flex-shrink:0;
+  background: var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  cursor:pointer;
+  padding:0;
+  z-index:101;
+}
+.burger span{
+  display:block;
+  width:18px;
+  height:2px;
+  background: var(--text);
+  border-radius:2px;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.burger.open span:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+.burger.open span:nth-child(2){ opacity:0; }
+.burger.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
 
 /* ---------- Hero ---------- */
 header.hero{
@@ -542,10 +568,41 @@ footer .wrap{
   .about-grid{ grid-template-columns:1fr; }
   .services-grid{ grid-template-columns: repeat(2, 1fr); }
   .contact-grid{ grid-template-columns:1fr; }
-  .nav-links{ display:none; }
+
+  .nav-cta{ display:none; }
+  .burger{ display:flex; }
+  .nav-links{
+    display:flex;
+    position:fixed;
+    top:0; left:0; right:0;
+    flex-direction:column;
+    background: rgba(6, 11, 22, 0.97);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 96px 32px 32px;
+    gap:6px;
+    font-size:1.1rem;
+    border-bottom:1px solid var(--border);
+    transform: translateY(-100%);
+    opacity:0;
+    pointer-events:none;
+    transition: transform .35s ease, opacity .3s ease;
+    z-index:90;
+  }
+  .nav-links.open{
+    transform: translateY(0);
+    opacity:1;
+    pointer-events:auto;
+  }
+  .nav-links a{
+    padding:14px 4px;
+    border-bottom:1px solid var(--border);
+  }
 }
 @media (max-width: 600px){
   .wrap{ padding:0 20px; }
+  .logo{ font-size:1.02rem; gap:8px; }
+  .logo-mark{ width:30px; height:30px; font-size:0.85rem; }
   section{ padding:90px 0; }
   .services-grid{ grid-template-columns:1fr; }
   .form-row{ grid-template-columns:1fr; }

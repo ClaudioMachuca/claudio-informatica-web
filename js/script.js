@@ -4,6 +4,28 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
 }, { passive:true });
 
+// Mobile menu (burger)
+const burgerBtn = document.getElementById('burgerBtn');
+const navLinksEl = document.querySelector('.nav-links');
+if (burgerBtn && navLinksEl) {
+  const closeMenu = () => {
+    navLinksEl.classList.remove('open');
+    burgerBtn.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+  };
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = navLinksEl.classList.toggle('open');
+    burgerBtn.classList.toggle('open', isOpen);
+    burgerBtn.setAttribute('aria-expanded', String(isOpen));
+  });
+  navLinksEl.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900) closeMenu();
+  });
+}
+
 // Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal, .reveal-scale');
 const io = new IntersectionObserver((entries) => {
